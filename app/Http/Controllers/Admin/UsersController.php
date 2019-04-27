@@ -59,8 +59,8 @@ class UsersController extends Controller
         $user->id_role = $request->id_role;
         $user->password = bcrypt($request->password);
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo')->store('', 'uploads');
-            $user->photo = $photo;
+            $request->file('photo')->move('uploads/', $request->file('photo')->getClientOriginalName());
+            $user->photo = $request->file('photo')->getClientOriginalName();
         }
 
         $user->save();
@@ -79,8 +79,8 @@ class UsersController extends Controller
         }
 
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo')->store('', 'uploads');
-            $user->photo = $photo;
+            $request->file('photo')->move('uploads/', $request->file('photo')->getClientOriginalName());
+            $user->photo = $request->file('photo')->getClientOriginalName();
         }
         
         $user->save();

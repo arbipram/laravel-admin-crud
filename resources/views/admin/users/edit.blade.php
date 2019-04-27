@@ -44,6 +44,10 @@
                     </div>
                     <div class="form-group">
                         <label for="">Photo</label>
+                        <br>
+                        @if(!empty($user->photo))
+                            <img src="{{asset('uploads/'.$user->photo)}}" alt="" height="100px">
+                        @endif
                         <input type="file" class="form-control" name="photo">
                     </div>
                     {{csrf_field()}}
